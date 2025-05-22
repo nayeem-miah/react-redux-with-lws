@@ -1,15 +1,6 @@
-import { useState } from "react";
 import Count from "./Count";
 
-const Counter = () => {
-    const [count, setCount] = useState(0);
-
-    const handleIncrement = () => {
-        setCount(count => count + 1);
-    };
-    const handleDecrement = () => {
-        setCount(count => count - 1);
-    };
+const Counter = ({ count, onIncrement, onDecrement }) => {
 
     return (
         <div className="mx-auto max-w-7xl p-2 flex justify-center items-center">
@@ -18,8 +9,8 @@ const Counter = () => {
                     <Count count={count} />
                 </div>
                 <div className="space-x-5 my-5">
-                    <button onClick={handleIncrement} className="btn bg-green-500" > increment</button >
-                    <button onClick={handleDecrement} className="btn bg-red-500" > decrement</button >
+                    <button onClick={onIncrement} className="btn bg-green-500" > increment</button >
+                    <button onClick={onDecrement} className="btn bg-red-500" > decrement</button >
                 </div>
             </div>
 
