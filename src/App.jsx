@@ -1,46 +1,23 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Counter from "./Components/Counter/Counter"
 import Stats from "./Components/Counter/Stats";
+import { decrement, increment, reset } from "./features/counters/CounterSlice";
 
-const initialCounter = [
-    {
-        id: 1,
-        value: 0
-    },
-    {
-        id: 2,
-        value: 0
-    }
-];
+
 
 const App = () => {
-    const [counters, setCounters] = useState(initialCounter);
+    const counters = useSelector(state => state.counters);
+    const dispatch = useDispatch();
 
     const handleIncrement = (counterId) => {
-        const updatedCounters = counters.map(counter => {
-            if (counter.id === counterId) {
-                return {
-                    ...counter,
-                    value: counter.value + 1
-                }
-            }
-            return counter;
-        })
-        setCounters(updatedCounters);
+        dispatch(increment(counterId))
     };
 
     const handleDecrement = (counterId) => {
-
-        const updatedCounters = counters.map(counter => {
-            if (counter.id === counterId) {
-                return {
-                    ...counter,
-                    value: counter.value - 1
-                }
-            }
-            return counter
-        });
-        setCounters(updatedCounters);
+        dispatch(decrement(counterId))
+    };
+    const handleReset = (counterId) => {
+        dispatch(reset(counterId))
     };
     const totalCount = counters.reduce((sum, current) => sum + current.value, 0);
 
@@ -54,6 +31,7 @@ const App = () => {
                         key={counter.id}
                         onIncrement={() => handleIncrement(counter.id)}
                         onDecrement={() => handleDecrement(counter.id)}
+                        onReset={() => handleReset(counter.id)}
                         count={counter.value}
                     />))
                 }

@@ -1,6 +1,6 @@
 import Count from "./Count";
 
-const Counter = ({ count, onIncrement, onDecrement }) => {
+const Counter = ({ count, onIncrement, onDecrement, onReset }) => {
 
     return (
         <div className="mx-auto max-w-7xl p-2 flex justify-center items-center">
@@ -11,6 +11,7 @@ const Counter = ({ count, onIncrement, onDecrement }) => {
                 <div className="space-x-5 my-5">
                     <button onClick={onIncrement} className="btn bg-green-500" > increment</button >
                     <button onClick={onDecrement} className="btn bg-red-500" > decrement</button >
+                    <button onClick={onReset} className="btn bg-yellow-500" > reset</button >
                 </div>
             </div>
 
