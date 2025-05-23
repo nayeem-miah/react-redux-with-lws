@@ -9,11 +9,13 @@ const Posts = () => {
 
 
     useEffect(() => {
-        dispatch(fetchPosts())
+        dispatch(fetchPosts());
     }, [dispatch])
 
+    //  decide what to render
     if (posts.isLoading) return <h3>posts loading ............</h3>
-    if (posts.error) return <h3>error : {posts.error}</h3>
+    if (posts.error) return <h3 className="text-red-500 py-8">error : {posts.error}</h3>
+    if (posts?.posts?.length > 0) return <h3>error : {posts.error}</h3>
 
 
 
