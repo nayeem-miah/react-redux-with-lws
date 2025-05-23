@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 import Counter from "./Components/Counter/Counter"
 import Stats from "./Components/Counter/Stats";
 import { decrement, increment, reset } from "./features/counters/CounterSlice";
+import Posts from "./Components/posts/posts";
 
 
 
 const App = () => {
+
     const counters = useSelector(state => state.counters);
     const dispatch = useDispatch();
 
@@ -24,18 +26,23 @@ const App = () => {
     return (
         <div className="mx-auto max-w-7xl p-2 flex justify-center items-center">
             <div>
-                <h3 className="text-2xl my-2">simple counter application </h3>
-                {
-                    counters.map(counter =>
-                    (<Counter
-                        key={counter.id}
-                        onIncrement={() => handleIncrement(counter.id)}
-                        onDecrement={() => handleDecrement(counter.id)}
-                        onReset={() => handleReset(counter.id)}
-                        count={counter.value}
-                    />))
-                }
-                <Stats totalCount={totalCount} />
+                <div>
+                    <h3 className="text-2xl my-2">simple counter application </h3>
+                    {
+                        counters.map(counter =>
+                        (<Counter
+                            key={counter.id}
+                            onIncrement={() => handleIncrement(counter.id)}
+                            onDecrement={() => handleDecrement(counter.id)}
+                            onReset={() => handleReset(counter.id)}
+                            count={counter.value}
+                        />))
+                    }
+                    <Stats totalCount={totalCount} />
+                </div>
+
+                {/* posts */}
+                <Posts />
             </div>
         </div>
     )
